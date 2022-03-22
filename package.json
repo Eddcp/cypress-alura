@@ -9,6 +9,7 @@
   "author": "Eduardo Paiva",
   "license": "ISC",
   "devDependencies": {
-    "cypress": "^9.5.2"
+    "cypress": "^9.5.2",
+    "mochawesome": "^7.1.2"
   }
 }
