@@ -1,0 +1,14 @@
+[
+    {
+        "email": "anakin.skywalker@outlook.com",
+        "fullName": "Anakin Skylwaker",
+        "userName": "anakinskywalker",
+        "password": "darthvader"
+    },
+    {
+        "email": "don.corleone@outlook.com",
+        "fullName": "Vito Andolini",
+        "userName": "doncorleone",
+        "password": "godfather"
+    }
+]

@@ -47,4 +47,19 @@ describe('Login and signup of users on alura pic', () => {
             expect(str).to.equal('Invalid user name or password');
         })
     })
+
+    const users = require('../../fixtures/users.json');
+    
+    users.forEach((user) => {
+        it.only(`register new user ${user.userName}`, () => {
+            cy.contains('a', 'Register now').click();
+            cy.contains('button', 'Register').click();
+            cy.get('input[formcontrolname="email"]').type(user.email);
+            cy.get('input[formcontrolname="userName"]').type(user.userName);
+            cy.get('input[formcontrolname="fullName"]').type(user.fullName);
+            cy.get('input[formcontrolname="password"]').type(user.password);
+            cy.contains('button', 'Register').click();
+        })
+    })
+    
 })
