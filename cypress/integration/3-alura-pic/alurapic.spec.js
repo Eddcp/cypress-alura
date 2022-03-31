@@ -1,65 +1,28 @@
-describe('Login and signup of users on alura pic', () => {
+describe('Testing home page', () => {
     beforeEach(() => {
         cy.visit('https://alura-fotos.herokuapp.com');
     })
-
-    it('verify validation messages', () => {
-        cy.contains('a', 'Register now').click();
-        cy.contains('button', 'Register').click();
-        cy.contains('ap-vmessage', 'Email is required!').should('be.visible');
-        cy.contains('button', 'Register').click();
+  
+    it('verify messages on initial page', () => {
         cy.contains('ap-vmessage', 'User name is required!').should('be.visible');
-        cy.contains('ap-vmessage', 'Full name is required!').should('be.visible');
         cy.contains('ap-vmessage', 'Password is required!').should('be.visible');
+        cy.get('button[type="submit"]').should('be.disabled');
+
     })
 
-    it('verify invalid email message', () => {
-        cy.contains('a', 'Register now').click();
-        cy.contains('button', 'Register').click();
-        cy.get('input[formcontrolname="email"]').type('eduardo');
-        cy.contains('ap-vmessage', 'Invalid e-mail').should('be.visible');
-    })
-    
-    it('verify minimun 8 length password', () => {
-        cy.contains('a', 'Register now').click();
-        cy.contains('button', 'Register').click();
+    it('verify enabled button on initial page', () => {
+        cy.get('input[formcontrolname="userName"]').type('Jacqueline');
         cy.get('input[formcontrolname="password"]').type('123');
-        cy.contains('button', 'Register').click();
-        cy.contains('ap-vmessage', 'Mininum length is 8').should('be.visible');
+        cy.get('button[type="submit"]').should('be.enabled');
     })
 
-    it('verify username lower case', () => {
-        cy.contains('a', 'Register now').click();
-        cy.contains('button', 'Register').click();
-        cy.get('input[formcontrolname="userName"]').type('TEST');
-        cy.contains('button', 'Register').click();
-        cy.contains('ap-vmessage', 'Must be lower case').should('be.visible');
+    it('verify application name on initial page', () => {
+        cy.contains('a' ,' ALURAPIC ').should('be.visible');
     })
 
-    it.only('login with valid user', () => {
-        cy.login('flavio', '123');
-        cy.contains('a', '(Logout').should('be.visible');
-    })
-
-    it.only('login with invalid user', () => {
-        cy.login('jacqueline', '1234');
-        cy.on ('window:alert', (str) => {
-            expect(str).to.equal('Invalid user name or password');
-        })
-    })
-
-    const users = require('../../fixtures/users.json');
-    
-    users.forEach((user) => {
-        it.only(`register new user ${user.userName}`, () => {
-            cy.contains('a', 'Register now').click();
-            cy.contains('button', 'Register').click();
-            cy.get('input[formcontrolname="email"]').type(user.email);
-            cy.get('input[formcontrolname="userName"]').type(user.userName);
-            cy.get('input[formcontrolname="fullName"]').type(user.fullName);
-            cy.get('input[formcontrolname="password"]').type(user.password);
-            cy.contains('button', 'Register').click();
-        })
+    it('verify clickable menu on initial page', () => {
+        cy.get('.navbar-brand > .fa').click();
+        cy.get('.menu-bar > .fa').should('be.visible');
     })
     
 })

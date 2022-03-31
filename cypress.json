@@ -7,5 +7,6 @@
     "json": false,
     "timestamp": "mmddyyyy_HHMMss"
   },
-  "projectId": "k5kczb"
+  "projectId": "k5kczb",
+  "baseUrl": "https://alura-fotos.herokuapp.com"
 }
